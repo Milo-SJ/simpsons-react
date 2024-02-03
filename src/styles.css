@@ -1,0 +1,9 @@
+.Right {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.Left {
+  display: flex;
+  flex-direction: row;
+}

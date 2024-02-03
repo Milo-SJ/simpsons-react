@@ -4,7 +4,7 @@ class Image extends Component {
   state = {};
   render() {
     // map over array return image
-    return <img src={this.props.image} />;
+    return <img src={this.props.image} alt={this.props.character} />;
   }
 }
 

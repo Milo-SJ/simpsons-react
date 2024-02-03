@@ -15,6 +15,7 @@ class Character extends Component {
           <Image image={image} />
           <Quote quote={quote} />
         </div>
+        {/* <button onClick={() => deleteCharacter()}>Delete</button> */}
       </>
     );
   }
