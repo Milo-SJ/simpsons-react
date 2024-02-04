@@ -14,6 +14,7 @@ class Characters extends Component {
               data={item}
               deleteCharacter={this.props.deleteCharacter}
               index={index}
+              onClickLike={this.props.onClickLike}
             />
           ))}
       </>

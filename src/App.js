@@ -25,6 +25,10 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
+  onClickLike = (e) => {
+    console.log("clicked");
+  };
+
   render() {
     console.log(this.state);
     const { simpsons } = this.state;
