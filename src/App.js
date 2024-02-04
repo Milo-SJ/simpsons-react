@@ -18,17 +18,20 @@ class App extends Component {
     this.setState({ simpsons: data });
   };
 
-  // deleteCharacter = () => {
-  //   const simpsons = [...this.state.simpsons];
-  //   const index = simpsons.findIndex((item) => item.simpsons === simpsons);
-  //   simpsons.splice(index, 1);
-  //   this.setState({ simpsons });
-  // };
+  deleteCharacter = (quote) => {
+    const simpsons = [...this.state.simpsons];
+    const index = simpsons.findIndex((item) => item.quote === quote);
+    simpsons.splice(index, 1);
+    this.setState({ simpsons });
+  };
+
   render() {
     console.log(this.state);
     const { simpsons } = this.state;
 
-    return <Characters simpsons={simpsons} />;
+    return (
+      <Characters simpsons={simpsons} deleteCharacter={this.deleteCharacter} />
+    );
   }
 }
 
