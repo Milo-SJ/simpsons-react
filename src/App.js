@@ -4,7 +4,7 @@ import Characters from "./components/Characters";
 import "./styles.css";
 
 class App extends Component {
-  state = {};
+  state = { count: 0 };
 
   componentDidMount() {
     this.getApiData();
@@ -25,16 +25,26 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
-  onClickLike = (e) => {
+  onClickLike = () => {
+    this.setState({ count: this.state.count + 1 });
     console.log("clicked");
   };
 
   render() {
     console.log(this.state);
-    const { simpsons } = this.state;
+    const { simpsons, count } = this.state;
 
     return (
-      <Characters simpsons={simpsons} deleteCharacter={this.deleteCharacter} />
+      <>
+        <div>
+          <h2>Likes {count}</h2>
+        </div>
+        <Characters
+          simpsons={simpsons}
+          deleteCharacter={this.deleteCharacter}
+          onClickLike={this.onClickLike}
+        />
+      </>
     );
   }
 }

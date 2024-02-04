@@ -19,7 +19,7 @@ class Character extends Component {
             <Quote quote={quote} />
           </div>
           <button onClick={() => deleteCharacter(quote)}>Delete</button>
-          <button onClick={() => onClickLike()}>Like</button>
+          <button onClick={onClickLike}>Like</button>
         </div>
       </>
     );
