@@ -7,8 +7,8 @@ class Character extends Component {
   state = {};
   render() {
     const { character, characterDirection, quote, image } = this.props.data;
-    const { deleteCharacter } = this.props;
-    const { onClickLike } = this.props;
+    const { deleteCharacter, onLikeToggle } = this.props;
+
     //bring in the name image and quote into here then into interface
     return (
       <>
@@ -19,7 +19,7 @@ class Character extends Component {
             <Quote quote={quote} />
           </div>
           <button onClick={() => deleteCharacter(quote)}>Delete</button>
-          <button onClick={onClickLike}>Like</button>
+          <button onClick={() => onLikeToggle(quote)}>Like</button>
         </div>
       </>
     );

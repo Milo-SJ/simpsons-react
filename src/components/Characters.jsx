@@ -11,10 +11,11 @@ class Characters extends Component {
         {this.props.simpsons &&
           this.props.simpsons.map((item, index) => (
             <Character
+              key={index}
               data={item}
               deleteCharacter={this.props.deleteCharacter}
               index={index}
-              onClickLike={this.props.onClickLike}
+              onLikeToggle={this.props.onLikeToggle}
             />
           ))}
       </>

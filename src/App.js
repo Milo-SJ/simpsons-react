@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import Characters from "./components/Characters";
 import "./styles.css";
+import Spinner from "./components/Spinner";
+import Search from "./components/Search";
 
 class App extends Component {
-  state = { count: 0 };
+  state = {};
 
   componentDidMount() {
     this.getApiData();
@@ -25,24 +27,46 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
-  onClickLike = () => {
-    this.setState({ count: this.state.count + 1 });
+  onLikeToggle = (quote) => {
+    const simpsons = [...this.state.simpsons];
+    const index = simpsons.findIndex((item) => item.quote === quote);
+    simpsons[index].liked = !simpsons[index].liked;
+    this.setState({ simpsons });
     console.log("clicked");
   };
 
+  onCharacterSearch = (character) => {
+    const simpsons = [...this.state.simpsons];
+    // const index = simpsons.findIndex((item) => item.character === character);
+    // simpsons[index].
+    this.setState({ simpsons });
+  };
+
   render() {
+    if (!this.state.simpsons) {
+      return <Spinner />;
+    }
     console.log(this.state);
-    const { simpsons, count } = this.state;
+    const { simpsons } = this.state;
+    console.log(simpsons);
+    let count = 0;
+    simpsons.forEach((element) => {
+      if (element.liked) {
+        count++;
+      }
+    });
 
     return (
       <>
         <div>
+          <Search />
           <h2>Likes {count}</h2>
         </div>
+
         <Characters
           simpsons={simpsons}
           deleteCharacter={this.deleteCharacter}
-          onClickLike={this.onClickLike}
+          onLikeToggle={this.onLikeToggle}
         />
       </>
     );
