@@ -36,10 +36,11 @@ class App extends Component {
   };
 
   onCharacterSearch = (character) => {
-    const simpsons = [...this.state.simpsons];
-    // const index = simpsons.findIndex((item) => item.character === character);
-    // simpsons[index].
-    this.setState({ simpsons });
+    const { simpsons } = this.state;
+    const searchedCharacters = simpsons.filter((item) =>
+      item.character.toLowerCase().includes(character.toLowerCase())
+    );
+    this.setState({ simpsons: searchedCharacters });
   };
 
   render() {
@@ -59,7 +60,7 @@ class App extends Component {
     return (
       <>
         <div>
-          <Search />
+          <Search onCharacterSearch={this.onCharacterSearch} />
           <h2>Likes {count}</h2>
         </div>
 
