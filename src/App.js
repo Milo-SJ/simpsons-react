@@ -36,7 +36,7 @@ class App extends Component {
   };
 
   onCharacterSearch = (character) => {
-    const { simpsons } = this.state;
+    const simpsons = [...this.state.simpsons];
     const searchedCharacters = simpsons.filter((item) =>
       item.character.toLowerCase().includes(character.toLowerCase())
     );
@@ -56,7 +56,19 @@ class App extends Component {
         count++;
       }
     });
-
+    //below is where I will input code to return to original if no search or search deleted
+    // if falsy searchedCharacters and no length return to origninal
+    // if (!this.state.searchedCharacters || searchedCharacters.length === 0) {
+    //   return (
+    //     <>
+    //       <Characters
+    //         simpsons={simpsons}
+    //         deleteCharacter={this.deleteCharacter}
+    //         onLikeToggle={this.onLikeToggle}
+    //       />
+    //     </>
+    //   );
+    // }
     return (
       <>
         <div>
