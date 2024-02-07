@@ -6,10 +6,11 @@ class Search extends Component {
     const { onCharacterSearch } = this.props;
     return (
       <>
+        <label htmlFor="search"></label>
         <input
-          onInput={(e) => onCharacterSearch(e.target.value)}
+          onInput={onCharacterSearch}
           type="text"
-          id="location-search"
+          id="search"
           placeholder="Character Search"
         />
       </>

@@ -12,7 +12,7 @@ class Character extends Component {
     //bring in the name image and quote into here then into interface
     return (
       <>
-        <div key={quote}>
+        <div key={quote} className="character-card">
           <Name name={character} />
           <div className={characterDirection}>
             <Image image={image} />

@@ -9,12 +9,12 @@ class App extends Component {
   state = {};
 
   componentDidMount() {
-    this.getApiData();
+    this.getApiData("future");
   }
 
-  getApiData = async () => {
+  getApiData = async (searchInput) => {
     const { data } = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${searchInput}`
     );
 
     this.setState({ simpsons: data });
@@ -35,12 +35,8 @@ class App extends Component {
     console.log("clicked");
   };
 
-  onCharacterSearch = (character) => {
-    const simpsons = [...this.state.simpsons];
-    const searchedCharacters = simpsons.filter((item) =>
-      item.character.toLowerCase().includes(character.toLowerCase())
-    );
-    this.setState({ simpsons: searchedCharacters });
+  onCharacterSearch = (e) => {
+    this.getApiData(e.target.value);
   };
 
   render() {
@@ -56,31 +52,29 @@ class App extends Component {
         count++;
       }
     });
-    //below is where I will input code to return to original if no search or search deleted
-    // if falsy searchedCharacters and no length return to origninal
-    // if (!this.state.searchedCharacters || searchedCharacters.length === 0) {
-    //   return (
-    //     <>
-    //       <Characters
-    //         simpsons={simpsons}
-    //         deleteCharacter={this.deleteCharacter}
-    //         onLikeToggle={this.onLikeToggle}
-    //       />
-    //     </>
-    //   );
-    // }
+
     return (
       <>
-        <div>
-          <Search onCharacterSearch={this.onCharacterSearch} />
-          <h2>Likes {count}</h2>
-        </div>
+        <header>
+          <h1>The Simpsons</h1>
+        </header>
+        <main>
+          <div className="search-container">
+            <div>
+              <Search onCharacterSearch={this.onCharacterSearch} />
+            </div>
+            <div>
+              <p>Likes: {count}</p>
+            </div>
+          </div>
 
-        <Characters
-          simpsons={simpsons}
-          deleteCharacter={this.deleteCharacter}
-          onLikeToggle={this.onLikeToggle}
-        />
+          <Characters
+            simpsons={simpsons}
+            deleteCharacter={this.deleteCharacter}
+            onLikeToggle={this.onLikeToggle}
+          />
+        </main>
+        <footer></footer>
       </>
     );
   }
