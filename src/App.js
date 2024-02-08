@@ -14,7 +14,9 @@ class App extends Component {
 
   getApiData = async (searchInput) => {
     const { data } = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${searchInput}`
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
+        searchInput ? searchInput : "character"
+      }`
     );
 
     this.setState({ simpsons: data });
