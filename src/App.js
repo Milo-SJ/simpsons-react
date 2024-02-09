@@ -9,13 +9,13 @@ class App extends Component {
   state = {};
 
   componentDidMount() {
-    this.getApiData("future");
+    this.getApiData();
   }
 
   getApiData = async (searchInput) => {
     const { data } = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
-        searchInput ? searchInput : "character"
+        searchInput ? searchInput : ""
       }`
     );
 
