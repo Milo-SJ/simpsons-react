@@ -4,6 +4,7 @@ import Characters from "./components/Characters";
 import "./styles.css";
 import Spinner from "./components/Spinner";
 import Search from "./components/Search";
+import Joi from "joi";
 
 class App extends Component {
   state = {};
