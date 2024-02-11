@@ -38,8 +38,23 @@ class App extends Component {
     console.log("clicked");
   };
 
-  onCharacterSearch = (e) => {
+  onCharacterSearch = async (e) => {
     this.getApiData(e.target.value);
+
+    // validation
+    const _joiInstance = Joi.object({ character: Joi.string().min(3).max(25) });
+    try {
+      await _joiInstance.validateAsync({ character: e.target.value });
+      this.setState({ errors: null });
+    } catch (e) {
+      console.log(e);
+
+      const errorsMod = {};
+      e.details.forEach((error) => {
+        errorsMod[error.context.key] = error.message;
+      });
+      this.setState({ errors: errorsMod });
+    }
   };
 
   render() {
@@ -69,6 +84,7 @@ class App extends Component {
             <div>
               <p>Likes: {count}</p>
             </div>
+            <p>{this.state.errors && this.state.errors.character}</p>
           </div>
 
           <Characters
