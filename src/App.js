@@ -38,14 +38,16 @@ class App extends Component {
     console.log("clicked");
   };
 
+  schema = { character: Joi.string().min(3).max(25) };
+
   onCharacterSearch = async (e) => {
     this.getApiData(e.target.value);
 
     // validation
-    const _joiInstance = Joi.object({ character: Joi.string().min(3).max(25) });
+    const _joiInstance = Joi.object(this.schema);
     try {
       await _joiInstance.validateAsync({ character: e.target.value });
-      this.setState({ errors: null });
+      this.setState({ errors: undefined });
     } catch (e) {
       console.log(e);
 
